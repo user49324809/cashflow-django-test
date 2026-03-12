@@ -34,7 +34,7 @@
 
 Склонировать репозиторий:
 
-git clone [https://github.com/username/cashflow-test.git](https://github.com/username/cashflow-test.git)
+git clone [https://github.com/user49324809/cashflow-test.git](https://github.com/user49324809/cashflow-test.git)
 
 Перейти в папку проекта:
 
