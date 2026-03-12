@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block content %}
+<h3>Создать запись</h3>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button class="btn btn-success">Сохранить</button>
+</form>
+{% endblock %}
+<script>
+document.getElementById("id_type").addEventListener("change", function(){
+    let typeId = this.value
+    fetch("/api/categories/?type=" + typeId)
+    .then(response => response.json())
+    .then(data => {
+        let categorySelect = document.getElementById("id_category")
+        categorySelect.innerHTML = ""
+        data.forEach(function(item){
+            let option = document.createElement("option")
+            option.value = item.id
+            option.text = item.name
+            categorySelect.appendChild(option)
+        })
+
+    })
+
+})
+
+document.getElementById("id_category").addEventListener("change", function(){
+    let categoryId = this.value
+    fetch("/api/subcategories/?category=" + categoryId)
+    .then(response => response.json())
+    .then(data => {
+        let subSelect = document.getElementById("id_subcategory")
+        subSelect.innerHTML = ""
+        data.forEach(function(item){
+            let option = document.createElement("option")
+            option.value = item.id
+            option.text = item.name
+            subSelect.appendChild(option)
+        })
+    })
+})
+</script>

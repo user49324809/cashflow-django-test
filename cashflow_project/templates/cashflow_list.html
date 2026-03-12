@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block content %}
+<a href="/create/" class="btn btn-primary mb-3">Добавить запись</a>
+<form method="get" class="mb-4">
+    {{ filter.form.as_p }}
+    <button class="btn btn-primary">Фильтр</button>
+</form>
+<table class="table table-striped">
+    <tr>
+        <th>Дата</th>
+        <th>Статус</th>
+        <th>Тип</th>
+        <th>Категория</th>
+        <th>Подкатегория</th>
+        <th>Сумма</th>
+        <th>Комментарий</th>
+        <th>Действия</th>
+    </tr>
+    {% for r in records %}
+    <tr>
+        <td>{{ r.created_at }}</td>
+        <td>{{ r.status }}</td>
+        <td>{{ r.type }}</td>
+        <td>{{ r.category }}</td>
+        <td>{{ r.subcategory }}</td>
+        <td>{{ r.amount }}</td>
+        <td>{{ r.comment }}</td>
+        <td>
+            <a href="/edit/{{r.id}}" class="btn btn-sm btn-warning">Edit</a>
+            <a href="/delete/{{r.id}}" class="btn btn-sm btn-danger">Delete</a>
+            <a href="/create/" class="btn btn-primary mb-3">Добавить запись</a>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}
